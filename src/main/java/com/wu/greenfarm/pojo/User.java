@@ -26,7 +26,7 @@ public class User {
         this.password = password;
         this.telephone = telephone;
         this.isAdministrator = 0;
-        this.isFarmer = 1;
+        this.isFarmer = 0;
     }
 
     public int getId() {
@@ -60,7 +60,6 @@ public class User {
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
-
 
     public int getIsFarmer() {
         return isFarmer;
