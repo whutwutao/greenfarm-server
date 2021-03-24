@@ -6,5 +6,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface UserService {
-    boolean registerUser(User user);
+    /**
+     * 注册用户
+     * @param user
+     * @return
+     */
+    boolean register(User user);
+
+    /**
+     * 用户登录
+     * @param user
+     * @return
+     */
+    boolean login(User user);
 }

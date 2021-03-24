@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wu.greenfarm.mapper.UserMapper">
+    <insert id="addUser" parameterType="User">
+        insert into t_user(id,username,password,telephone,is_farmer,is_administrator)
+        value(null,#{username},#{password},#{telephone},#{isFarmer},#{isAdministrator});
+    </insert>
+
+    <select id="queryUserByTelephone" resultType="User">
+        select * from t_user
+        where telephone = #{telephone};
+    </select>
+</mapper>

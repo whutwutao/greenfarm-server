@@ -32,7 +32,17 @@ class GreenfarmApplicationTests {
         if (userService == null) {
             System.out.println("null");
         } else {
-            userService.registerUser(user);
+            userService.register(user);
+        }
+    }
+
+    @Test
+    void loginTest() {
+        User user = new User(null,"123","10086");
+        if (userService.login(user)) {
+            System.out.println("登录成功");
+        } else {
+            System.out.println("登录失败");
         }
     }
 }

@@ -12,9 +12,22 @@ public class UserServiceImpl implements UserService{
     UserMapper userMapper;
 
     @Override
-    public boolean registerUser(User user) {
+    public boolean register(User user) {
         if (userMapper.queryUserByTelephone(user.getTelephone()) == null) {
             userMapper.addUser(user);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean login(User user) {
+        User user1 = userMapper.queryUserByTelephone(user.getTelephone());
+        if (user1 == null) {
+            return false;
+        }
+        if (user1.getPassword().equals(user.getPassword())) {
             return true;
         } else {
             return false;
