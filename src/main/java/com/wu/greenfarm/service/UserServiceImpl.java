@@ -22,15 +22,15 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean login(User user) {
+    public User login(User user) {
         User user1 = userMapper.queryUserByTelephone(user.getTelephone());
         if (user1 == null) {
-            return false;
+            return null;
         }
         if (user1.getPassword().equals(user.getPassword())) {
-            return true;
+            return user1;
         } else {
-            return false;
+            return null;
         }
     }
 }

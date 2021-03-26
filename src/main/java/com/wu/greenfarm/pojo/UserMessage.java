@@ -2,17 +2,20 @@ package com.wu.greenfarm.pojo;
 //注册信息类，封装注册产生的结果信息
 public class UserMessage {
 
-    //是否注册成功
+    //是否成功(注册或登录）
     private boolean successful;
     //失败原因
     private String failReason;
 
+    private User user;
+
     public UserMessage() {
     }
 
-    public UserMessage(boolean isSuccessful, String failReason) {
-        this.successful = isSuccessful;
+    public UserMessage(boolean successful, String failReason, User user) {
+        this.successful = successful;
         this.failReason = failReason;
+        this.user = user;
     }
 
     public boolean isSuccessful() {
@@ -20,7 +23,7 @@ public class UserMessage {
     }
 
     public void setSuccessful(boolean successful) {
-        successful = successful;
+        this.successful = successful;
     }
 
     public String getFailReason() {
@@ -31,11 +34,20 @@ public class UserMessage {
         this.failReason = failReason;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
-        return "UserRegisterMessage{" +
+        return "UserMessage{" +
                 "successful=" + successful +
                 ", failReason='" + failReason + '\'' +
+                ", user=" + user +
                 '}';
     }
 }
