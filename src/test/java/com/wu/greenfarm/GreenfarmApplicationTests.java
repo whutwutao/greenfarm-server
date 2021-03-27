@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 class GreenfarmApplicationTests {
 
@@ -40,5 +42,22 @@ class GreenfarmApplicationTests {
     void loginTest() {
         User user = new User(null,"123","10086");
         System.out.println(userService.login(user));
+    }
+
+    @Test
+    void getAllUserTest() {
+        List<User> userList = userService.getAllUser();
+        for (User user : userList) {
+            System.out.println(user);
+        }
+    }
+
+    @Test
+    void changePassword() {
+        User user = new User();
+        user.setId(13);
+        user.setPassword("4321");
+        System.out.println(userService.changePassword(user));
+
     }
 }

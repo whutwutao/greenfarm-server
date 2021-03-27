@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface UserMapper {
@@ -22,5 +24,18 @@ public interface UserMapper {
      * @return User
      */
     User queryUserByTelephone(@Param("telephone") String telephone);
+
+    /**
+     * 获取所有用户
+     * @return
+     */
+    List<User> getAllUser();
+
+    /**
+     * 修改密码
+     * @param password
+     * @return
+     */
+    int changePassword(@Param("id") int id, @Param("password") String password);
 
 }

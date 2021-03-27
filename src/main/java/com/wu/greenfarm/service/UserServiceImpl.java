@@ -5,6 +5,8 @@ import com.wu.greenfarm.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -32,5 +34,15 @@ public class UserServiceImpl implements UserService{
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        return userMapper.getAllUser();
+    }
+
+    @Override
+    public int changePassword(User user) {
+        return userMapper.changePassword(user.getId(),user.getPassword());
     }
 }

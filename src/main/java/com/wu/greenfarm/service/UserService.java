@@ -4,6 +4,8 @@ import com.wu.greenfarm.pojo.User;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface UserService {
     /**
@@ -19,4 +21,12 @@ public interface UserService {
      * @return
      */
     User login(User user);
+
+    /**
+     * 获取所有用户
+     * @return
+     */
+    List<User> getAllUser();
+
+    int changePassword(User user);
 }

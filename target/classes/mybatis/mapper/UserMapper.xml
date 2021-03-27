@@ -12,4 +12,14 @@
         select * from t_user
         where telephone = #{telephone};
     </select>
+
+    <select id="getAllUser" resultType="User">
+        select * from t_user;
+    </select>
+
+    <update id="changePassword">
+        update t_user
+        set password = #{password}
+        where id = #{id}
+    </update>
 </mapper>
