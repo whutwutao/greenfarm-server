@@ -53,11 +53,26 @@ class GreenfarmApplicationTests {
     }
 
     @Test
-    void changePassword() {
+    void changePasswordTest() {
         User user = new User();
         user.setId(13);
         user.setPassword("4321");
         System.out.println(userService.changePassword(user));
+    }
 
+    @Test
+    void changeUsernameTest() {
+        User user = new User();
+        user.setId(15);
+        user.setUsername("Kate");
+        System.out.println(userService.changeUsername(user));
+    }
+
+    @Test
+    void changeTelephoneTest() {
+        User user = new User();
+        user.setId(15);
+        user.setTelephone("13886476506");
+        System.out.println(userService.changeTelephone(user));
     }
 }

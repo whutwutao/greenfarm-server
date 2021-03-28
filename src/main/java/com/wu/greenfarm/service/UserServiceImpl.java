@@ -45,4 +45,19 @@ public class UserServiceImpl implements UserService{
     public int changePassword(User user) {
         return userMapper.changePassword(user.getId(),user.getPassword());
     }
+
+    @Override
+    public int changeUsername(User user) {
+        return userMapper.changeUsername(user.getId(), user.getUsername());
+    }
+
+    @Override
+    public int changeTelephone(User user) {
+        User user1 = userMapper.queryUserByTelephone(user.getTelephone());
+        if (user1 == null) {
+            return userMapper.changeTelephone(user.getId(),user.getTelephone());
+        } else {
+            return -1;
+        }
+    }
 }

@@ -58,4 +58,31 @@ public class UserController {
             return new UserMessage(false,"客户端数据传输异常",null);
         }
     }
+
+    @RequestMapping(value = "/changeUsername", method = RequestMethod.POST)
+    public UserMessage changeUsername(@RequestBody User user) {
+        if (user != null) {
+            if (userService.changeUsername(user) > 0) {
+                return new UserMessage(true,null,null);
+            } else {
+                return new UserMessage(false,"用户名修改失败",null);
+            }
+        } else {
+            return new UserMessage(false,"客户端数据传输异常",null);
+        }
+    }
+
+    @RequestMapping(value = "/changeTelephone", method = RequestMethod.POST)
+    public UserMessage changeTelephone(@RequestBody User user) {
+        if (user != null) {
+            System.out.println(user);
+            if (userService.changeTelephone(user) > 0) {
+                return new UserMessage(true,null,null);
+            } else {
+                return new UserMessage(false,"用户名修改失败",null);
+            }
+        } else {
+            return new UserMessage(false,"客户端数据传输异常",null);
+        }
+    }
 }

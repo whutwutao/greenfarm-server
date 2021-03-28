@@ -28,5 +28,24 @@ public interface UserService {
      */
     List<User> getAllUser();
 
+    /**
+     * 修改密码
+     * @param user
+     * @return
+     */
     int changePassword(User user);
+
+    /**
+     * 修改用户名
+     * @param user
+     * @return
+     */
+    int changeUsername(User user);
+
+    /**
+     * 修改手机号
+     * @param user
+     * @return
+     */
+    int changeTelephone(User user);
 }

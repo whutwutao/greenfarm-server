@@ -38,4 +38,20 @@ public interface UserMapper {
      */
     int changePassword(@Param("id") int id, @Param("password") String password);
 
+    /**
+     * 修改用户名
+     * @param id
+     * @param username
+     * @return
+     */
+    int changeUsername(@Param("id") int id, @Param("username") String username);
+
+    /**
+     * 修改手机号
+     * @param id
+     * @param telephone
+     * @return
+     */
+    int changeTelephone(@Param("id") int id, @Param("telephone") String telephone);
+
 }
