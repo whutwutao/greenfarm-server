@@ -1,6 +1,7 @@
 package com.wu.greenfarm.service;
 
 import com.wu.greenfarm.pojo.User;
+import com.wu.greenfarm.utils.VerificationCode;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +9,13 @@ import java.util.List;
 
 @Service
 public interface UserService {
+
+    /**
+     * 返回验证码生成类
+     * @return
+     */
+    VerificationCode getVerificationCode();
+
     /**
      * 注册用户
      * @param user

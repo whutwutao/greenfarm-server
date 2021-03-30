@@ -1,4 +1,7 @@
-package com.wu.greenfarm.pojo;
+package com.wu.greenfarm.message;
+
+import com.wu.greenfarm.pojo.User;
+
 //注册信息类，封装注册产生的结果信息
 public class UserMessage {
 

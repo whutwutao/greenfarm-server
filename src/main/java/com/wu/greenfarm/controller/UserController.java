@@ -1,18 +1,31 @@
 package com.wu.greenfarm.controller;
 
 import com.wu.greenfarm.pojo.User;
-import com.wu.greenfarm.pojo.UserMessage;
+import com.wu.greenfarm.message.UserMessage;
 import com.wu.greenfarm.service.UserService;
+import com.wu.greenfarm.utils.VerificationCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UserController {
 
     @Autowired
     UserService userService;
+
+    @RequestMapping(value = "/getVerificationCode", method = RequestMethod.GET)
+    public Map<String,String> getVerificationCode() {
+        Map<String,String> hashMap = new HashMap<>();
+        VerificationCode verificationCode = userService.getVerificationCode();
+        verificationCode.createCode();
+        hashMap.put("encodedImage",verificationCode.encode());
+        hashMap.put("code",verificationCode.getCode());
+        return hashMap;
+    }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public UserMessage register(@RequestBody User user) {

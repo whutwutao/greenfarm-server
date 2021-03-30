@@ -2,6 +2,7 @@ package com.wu.greenfarm.service;
 
 import com.wu.greenfarm.mapper.UserMapper;
 import com.wu.greenfarm.pojo.User;
+import com.wu.greenfarm.utils.VerificationCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,11 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     UserMapper userMapper;
+
+    @Override
+    public VerificationCode getVerificationCode() {
+        return new VerificationCode(160,40,5,150);
+    }
 
     @Override
     public boolean register(User user) {
