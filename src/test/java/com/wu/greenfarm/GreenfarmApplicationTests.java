@@ -53,6 +53,18 @@ class GreenfarmApplicationTests {
     }
 
     @Test
+    void getUserLimitTest() {
+//        List<User> userList = userMapper.getUserLimit(1,5);
+//        for (User user : userList) {
+//            System.out.println(user);
+//        }
+        List<User> userList = userService.getUserLimit(30,7);
+        for (User user : userList) {
+            System.out.println(user);
+        }
+    }
+
+    @Test
     void changePasswordTest() {
         User user = new User();
         user.setId(13);

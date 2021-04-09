@@ -7,6 +7,7 @@ import com.wu.greenfarm.utils.VerificationCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,18 @@ public class UserController {
     @RequestMapping(value = "/getAllUser", method = RequestMethod.GET)
     public List<User> getAllUser() {
         return userService.getAllUser();
+    }
+
+
+    @RequestMapping(value = "/getUserLimit", method = RequestMethod.POST)
+    public List<User> getUserLimit(@RequestBody HashMap<String, Integer> map) {
+        if (map != null) {
+            int start = map.get("start");
+            int len = map.get("len");
+            return userService.getUserLimit(start, len);
+        } else {
+            return new ArrayList<User>();
+        }
     }
 
     @RequestMapping(value = "/changePassword", method = RequestMethod.POST)

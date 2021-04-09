@@ -37,6 +37,14 @@ public interface UserService {
     List<User> getAllUser();
 
     /**
+     * 获取指定位置的记录
+     * @param start
+     * @param len
+     * @return
+     */
+    List<User> getUserLimit(int start, int len);
+
+    /**
      * 修改密码
      * @param user
      * @return

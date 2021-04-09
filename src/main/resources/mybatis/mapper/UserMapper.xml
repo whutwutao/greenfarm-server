@@ -17,6 +17,10 @@
         select * from t_user;
     </select>
 
+    <select id="getUserLimit" resultType="User">
+        select * from t_user limit #{start},#{len};
+    </select>
+
     <update id="changePassword">
         update t_user
         set password = #{password}

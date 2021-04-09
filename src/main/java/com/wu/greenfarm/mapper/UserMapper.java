@@ -32,6 +32,14 @@ public interface UserMapper {
     List<User> getAllUser();
 
     /**
+     *
+     * @param start 起始位置
+     * @param len 记录个数
+     * @return
+     */
+    List<User> getUserLimit(@Param("start") int start, @Param("len") int len);
+
+    /**
      * 修改密码
      * @param password
      * @return

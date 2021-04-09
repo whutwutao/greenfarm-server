@@ -48,6 +48,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public List<User> getUserLimit(int start, int len) {
+        return userMapper.getUserLimit(start, len);
+    }
+
+    @Override
     public int changePassword(User user) {
         return userMapper.changePassword(user.getId(),user.getPassword());
     }
