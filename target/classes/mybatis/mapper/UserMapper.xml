@@ -13,6 +13,11 @@
         where telephone = #{telephone};
     </select>
 
+    <select id="queryUserById" resultType="User">
+        select * from t_user
+        where id = #{id}
+    </select>
+
     <select id="getAllUser" resultType="User">
         select * from t_user;
     </select>

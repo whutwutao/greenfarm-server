@@ -26,6 +26,13 @@ public interface UserMapper {
     User queryUserByTelephone(@Param("telephone") String telephone);
 
     /**
+     * 根据id查询用户
+     * @param id
+     * @return
+     */
+    User queryUserById(@Param("id") int id);
+
+    /**
      * 获取所有用户
      * @return
      */

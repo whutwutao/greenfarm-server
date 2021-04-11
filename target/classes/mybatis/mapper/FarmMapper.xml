@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wu.greenfarm.mapper.FarmMapper">
+
+    <insert id="addFarm" parameterType="com.wu.greenfarm.pojo.Farm">
+        insert into t_farm (id, owner_id, address, description, picture_path, service_life, area, price, update_time)
+        value (null, #{ownerId}, #{address}, #{description}, #{picturePath}, #{serviceLife}, #{area}, #{price}, null);
+    </insert>
+
+    <select id="queryFarmByOwnerId" resultType="Farm">
+        select
+            t_farm.id id,
+            t_farm.owner_id ownerId,
+            t_farm.address address,
+            t_farm.description description,
+            t_farm.picture_path picturePath,
+            t_farm.service_life serviceLife,
+            t_farm.area area,
+            t_farm.price price,
+            t_farm.update_time updateTime
+            from t_farm
+            where t_farm.owner_id = #{ownerId};
+    </select>
+
+    <select id="queryAllFarm" resultType="Farm">
+        select
+            t_farm.id id,
+            t_farm.owner_id ownerId,
+            t_farm.address address,
+            t_farm.description description,
+            t_farm.picture_path picturePath,
+            t_farm.service_life serviceLife,
+            t_farm.area area,
+            t_farm.price price,
+            t_farm.update_time updateTime
+            from t_farm;
+    </select>
+
+    <select id="queryFarmLimit" resultType="Farm">
+        select
+            t_farm.id id,
+            t_farm.owner_id ownerId,
+            t_farm.address address,
+            t_farm.description description,
+            t_farm.picture_path picturePath,
+            t_farm.service_life serviceLife,
+            t_farm.area area,
+            t_farm.price price,
+            t_farm.update_time updateTime
+            from t_farm limit #{start}, #{len};
+    </select>
+</mapper>

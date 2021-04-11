@@ -1,7 +1,10 @@
 package com.wu.greenfarm;
 
+import com.wu.greenfarm.mapper.FarmMapper;
 import com.wu.greenfarm.mapper.UserMapper;
+import com.wu.greenfarm.pojo.Farm;
 import com.wu.greenfarm.pojo.User;
+import com.wu.greenfarm.service.FarmService;
 import com.wu.greenfarm.service.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,10 @@ class GreenfarmApplicationTests {
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    FarmMapper farmMapper;
+
 
     @Test
     void addUserTest() {
@@ -50,6 +57,12 @@ class GreenfarmApplicationTests {
         for (User user : userList) {
             System.out.println(user);
         }
+    }
+
+    @Test
+    void queryUserByIdTest() {
+        User user = userMapper.queryUserById(1);
+        System.out.println(user);
     }
 
     @Test
@@ -86,5 +99,53 @@ class GreenfarmApplicationTests {
         user.setId(15);
         user.setTelephone("13886476506");
         System.out.println(userService.changeTelephone(user));
+    }
+
+    @Test
+    void addFarmTest() {
+        Farm farm = new Farm();
+        farm.setAddress("湖北省武汉市");
+        farm.setArea(30.0);
+        farm.setDescription("土地质量良好");
+        farm.setPrice(20.0);
+        farm.setOwnerId(1);
+        farmMapper.addFarm(farm);
+    }
+
+    @Autowired
+    FarmService farmService;
+    @Test
+    void publish() {
+        Farm farm = new Farm();
+        farm.setAddress("湖北省武汉市");
+        farm.setArea(30.0);
+        farm.setDescription("广州海鸥岛8亩私人钓场农庄转让");
+        farm.setPrice(20.0);
+        farm.setOwnerId(2);
+        farmService.publish(farm);
+    }
+
+    @Test
+    void queryFarmByOwnerId() {
+        List<Farm> farmList = farmMapper.queryFarmByOwnerId(2);
+        for (Farm farm : farmList) {
+            System.out.println(farm);
+        }
+    }
+
+    @Test
+    void queryAllFarm() {
+        List<Farm> farmList = farmMapper.queryAllFarm();
+        for (Farm farm : farmList) {
+            System.out.println(farm);
+        }
+    }
+
+    @Test
+    void queryFarmLimit() {
+        List<Farm> farmList = farmMapper.queryFarmLimit(2,2);
+        for (Farm farm : farmList) {
+            System.out.println(farm);
+        }
     }
 }
