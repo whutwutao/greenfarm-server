@@ -31,6 +31,11 @@ public class FarmServiceImpl implements FarmService{
 
     @Override
     public List<Farm> getAllFarm() {
-        return null;
+        return farmMapper.queryAllFarm();
+    }
+
+    @Override
+    public List<Farm> getFarmLimit(int start, int len) {
+        return farmMapper.queryFarmLimit(start, len);
     }
 }

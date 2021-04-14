@@ -15,8 +15,10 @@ public interface FarmService {
     int publish(Farm farm);
 
     /**
-     * 查询所有农场
+     * 获取所有农场
      * @return
      */
     List<Farm> getAllFarm();
+
+    List<Farm> getFarmLimit(int start, int len);
 }

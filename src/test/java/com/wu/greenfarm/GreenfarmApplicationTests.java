@@ -148,4 +148,12 @@ class GreenfarmApplicationTests {
             System.out.println(farm);
         }
     }
+
+    @Test
+    void getFarmLimit() {
+        List<Farm> farmList = farmService.getFarmLimit(1,3);
+        for (Farm farm : farmList) {
+            System.out.println(farm);
+        }
+    }
 }
