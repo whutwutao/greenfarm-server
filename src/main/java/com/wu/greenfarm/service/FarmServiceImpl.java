@@ -19,7 +19,7 @@ public class FarmServiceImpl implements FarmService{
     FarmMapper farmMapper;
 
     @Override
-    public int publish(Farm farm) {
+    public int addFarm(Farm farm) {
         int ownerId = farm.getOwnerId();
         User user = userMapper.queryUserById(ownerId);
         if (user == null) {//因为owner_id是t_user的主键，所以要确保在t_user中存在其对应的记录

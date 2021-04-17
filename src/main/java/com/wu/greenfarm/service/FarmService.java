@@ -12,7 +12,7 @@ public interface FarmService {
      * @param farm
      * @return
      */
-    int publish(Farm farm);
+    int addFarm(Farm farm);
 
     /**
      * 获取所有农场

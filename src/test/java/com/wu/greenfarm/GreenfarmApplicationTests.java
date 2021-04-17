@@ -6,6 +6,7 @@ import com.wu.greenfarm.pojo.Farm;
 import com.wu.greenfarm.pojo.User;
 import com.wu.greenfarm.service.FarmService;
 import com.wu.greenfarm.service.UserServiceImpl;
+import com.wu.greenfarm.utils.ImageUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -122,7 +123,7 @@ class GreenfarmApplicationTests {
         farm.setDescription("广州海鸥岛8亩私人钓场农庄转让");
         farm.setPrice(20.0);
         farm.setOwnerId(2);
-        farmService.publish(farm);
+        farmService.addFarm(farm);
     }
 
     @Test
@@ -155,5 +156,10 @@ class GreenfarmApplicationTests {
         for (Farm farm : farmList) {
             System.out.println(farm);
         }
+    }
+
+    @Test
+    void picturePathGenerate() {
+        System.out.println(ImageUtil.getFileName(1));
     }
 }
