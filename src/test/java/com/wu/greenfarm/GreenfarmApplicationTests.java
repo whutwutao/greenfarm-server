@@ -162,4 +162,9 @@ class GreenfarmApplicationTests {
     void picturePathGenerate() {
         System.out.println(ImageUtil.getFileName(1));
     }
+
+    @Test
+    public void getTelephone() {
+        System.out.println(userService.getTelephone(13));
+    }
 }

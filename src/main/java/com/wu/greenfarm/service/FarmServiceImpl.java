@@ -38,4 +38,9 @@ public class FarmServiceImpl implements FarmService{
     public List<Farm> getFarmLimit(int start, int len) {
         return farmMapper.queryFarmLimit(start, len);
     }
+
+    @Override
+    public List<Farm> getFarmByOwnerId(int ownerId) {
+        return farmMapper.queryFarmByOwnerId(ownerId);
+    }
 }

@@ -20,5 +20,14 @@ public interface FarmService {
      */
     List<Farm> getAllFarm();
 
+    /**
+     * 分页获取未出租的农场列表
+     * @param start
+     * @param len
+     * @return
+     */
     List<Farm> getFarmLimit(int start, int len);
+
+
+    List<Farm> getFarmByOwnerId(int ownerId);
 }

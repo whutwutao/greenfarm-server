@@ -69,4 +69,6 @@ public interface UserMapper {
      */
     int changeTelephone(@Param("id") int id, @Param("telephone") String telephone);
 
+
+    String getTelephone(@Param("id") int id);
 }

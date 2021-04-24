@@ -9,7 +9,14 @@
     </insert>
 
     <select id="queryUserByTelephone" resultType="User">
-        select * from t_user
+        select
+            t_user.id id,
+            t_user.username username,
+            t_user.password password,
+            t_user.telephone telephone,
+            t_user.is_farmer isFarmer,
+            t_user.is_administrator isAdministrator
+        from t_user
         where telephone = #{telephone};
     </select>
 
@@ -43,4 +50,11 @@
         set telephone = #{telephone}
         where id = #{id};
     </update>
+
+    <select id="getTelephone" resultType="java.lang.String">
+        select telephone
+        from t_user
+        where id = #{id};
+    </select>
+
 </mapper>

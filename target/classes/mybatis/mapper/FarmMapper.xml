@@ -23,7 +23,7 @@
             from t_farm
             where t_farm.owner_id = #{ownerId};
     </select>
-
+<!--    获取所有农场的列表-->
     <select id="queryAllFarm" resultType="Farm">
         select
             t_farm.id id,
@@ -37,18 +37,19 @@
             t_farm.update_time updateTime
             from t_farm;
     </select>
-
+<!--    分页获取所有未出租农场的列表-->
+<!--    从视图v_farm_available中查询-->
     <select id="queryFarmLimit" resultType="Farm">
         select
-            t_farm.id id,
-            t_farm.owner_id ownerId,
-            t_farm.address address,
-            t_farm.description description,
-            t_farm.picture_path picturePath,
-            t_farm.service_life serviceLife,
-            t_farm.area area,
-            t_farm.price price,
-            t_farm.update_time updateTime
-            from t_farm limit #{start}, #{len};
+            v_farm_available.id id,
+            v_farm_available.owner_id ownerId,
+            v_farm_available.address address,
+            v_farm_available.description description,
+            v_farm_available.picture_path picturePath,
+            v_farm_available.service_life serviceLife,
+            v_farm_available.area area,
+            v_farm_available.price price,
+            v_farm_available.update_time updateTime
+            from v_farm_available limit #{start}, #{len};
     </select>
 </mapper>

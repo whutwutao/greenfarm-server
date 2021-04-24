@@ -64,4 +64,6 @@ public interface UserService {
      * @return
      */
     int changeTelephone(User user);
+
+    String getTelephone(int id);
 }
