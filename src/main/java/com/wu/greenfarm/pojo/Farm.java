@@ -1,7 +1,9 @@
 package com.wu.greenfarm.pojo;
 
-import java.util.Date;
+import org.springframework.stereotype.Component;
 
+import java.util.Date;
+@Component
 public class Farm {
 
     private int id;

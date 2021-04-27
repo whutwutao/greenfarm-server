@@ -9,6 +9,10 @@
         value (null, #{ownerId}, #{address}, #{description}, #{picturePath}, #{serviceLife}, #{area}, #{price}, null);
     </insert>
 
+    <select id = "queryFarmById" resultType="Farm">
+        select * from t_farm where id = #{id}
+    </select>
+
     <select id="queryFarmByOwnerId" resultType="Farm">
         select
             t_farm.id id,
@@ -51,5 +55,29 @@
             v_farm_available.price price,
             v_farm_available.update_time updateTime
             from v_farm_available limit #{start}, #{len};
+    </select>
+
+
+    <update id="setFarmRentOut">
+        update t_farm
+        set rent_out = 1
+        where id = #{id}
+    </update>
+
+<!--    Mybatis使用like时要用concat进行拼接，不然容易出问题-->
+    <select id="queryFarmByCondition" resultType="Farm">
+        select * from v_farm_available
+        where description like concat('%',#{condition},'%')
+        or address like concat('%',#{condition},'%')
+        or area like concat('%',#{condition},'%')
+    </select>
+
+    <select id="queryFarmByCustomerId" resultType="Farm">
+        select t_farm.id,t_farm.owner_id,t_farm.address,t_farm.description,t_farm.picture_path,t_farm.service_life,t_farm.area,t_farm.price,t_farm.update_time,t_farm.rent_out
+        from t_farm, t_farm_order
+        where
+            t_farm_order.customer_id = #{id} and
+            t_farm_order.status = 1 and
+            t_farm_order.farm_id = t_farm.id
     </select>
 </mapper>

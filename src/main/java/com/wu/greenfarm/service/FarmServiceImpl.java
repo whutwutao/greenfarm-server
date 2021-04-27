@@ -43,4 +43,19 @@ public class FarmServiceImpl implements FarmService{
     public List<Farm> getFarmByOwnerId(int ownerId) {
         return farmMapper.queryFarmByOwnerId(ownerId);
     }
+
+    @Override
+    public int setFarmSentOut(int farmId) {
+        return farmMapper.setFarmRentOut(farmId);
+    }
+
+    @Override
+    public List<Farm> searchFarmByCondition(String condition) {
+        return farmMapper.queryFarmByCondition(condition);
+    }
+
+    @Override
+    public List<Farm> getCustomerFarmList(User user) {
+        return farmMapper.queryFarmByCustomerId(user.getId());
+    }
 }

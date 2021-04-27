@@ -1,6 +1,7 @@
 package com.wu.greenfarm.service;
 
 import com.wu.greenfarm.pojo.Farm;
+import com.wu.greenfarm.pojo.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,4 +31,25 @@ public interface FarmService {
 
 
     List<Farm> getFarmByOwnerId(int ownerId);
+
+    /**
+     * 将农场设置为已出租
+     * @param farmId
+     * @return
+     */
+    int setFarmSentOut(int farmId);
+
+    /**
+     * 按条件查询农场
+     * @param condition
+     * @return
+     */
+    List<Farm> searchFarmByCondition(String condition);
+
+    /**
+     * 获取用户租赁的农场列表
+     * @param user
+     * @return
+     */
+    List<Farm> getCustomerFarmList(User user);
 }

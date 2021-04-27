@@ -1,8 +1,12 @@
 package com.wu.greenfarm;
 
 import com.wu.greenfarm.mapper.FarmMapper;
+import com.wu.greenfarm.mapper.FarmOrderMapper;
+import com.wu.greenfarm.mapper.ProductMapper;
 import com.wu.greenfarm.mapper.UserMapper;
 import com.wu.greenfarm.pojo.Farm;
+import com.wu.greenfarm.pojo.FarmOrder;
+import com.wu.greenfarm.pojo.Product;
 import com.wu.greenfarm.pojo.User;
 import com.wu.greenfarm.service.FarmService;
 import com.wu.greenfarm.service.UserServiceImpl;
@@ -25,6 +29,9 @@ class GreenfarmApplicationTests {
 
     @Autowired
     FarmMapper farmMapper;
+
+    @Autowired
+    FarmOrderMapper farmOrderMapper;
 
 
     @Test
@@ -127,6 +134,12 @@ class GreenfarmApplicationTests {
     }
 
     @Test
+    void queryFarmById() {
+        Farm farm = farmMapper.queryFarmById(37);
+        System.out.println(farm);
+    }
+
+    @Test
     void queryFarmByOwnerId() {
         List<Farm> farmList = farmMapper.queryFarmByOwnerId(2);
         for (Farm farm : farmList) {
@@ -166,5 +179,73 @@ class GreenfarmApplicationTests {
     @Test
     public void getTelephone() {
         System.out.println(userService.getTelephone(13));
+    }
+
+    @Test
+    public void addFarmOrderTest() {
+        FarmOrder farmOrder = new FarmOrder();
+        farmOrder.setFarmId(37);
+        farmOrder.setCustomerId(25);
+        farmOrderMapper.addFarmOrder(farmOrder);
+    }
+
+    @Test
+    public void queryFarmOrderById() {
+        System.out.println(farmOrderMapper.queryFarmOrderById(1));
+    }
+
+    @Test
+    public void queryFarmOrderByFarmId() {
+        System.out.println(farmOrderMapper.queryFarmOrderByFarmId(37));
+    }
+
+    @Test
+    public void queryFarmOrderByCustomerId() {
+        System.out.println(farmOrderMapper.queryFarmOrderByCustomerId(25));
+    }
+
+    @Test
+    public void setFarmRentOut() {
+        farmMapper.setFarmRentOut(1);
+    }
+
+    @Test
+    public void queryFarmByCondition() {
+        List<Farm> farmList = farmMapper.queryFarmByCondition("0");
+        for (Farm farm : farmList) {
+            System.out.println(farm);
+        }
+    }
+
+    @Test
+    public void queryFarmByCustomerId() {
+        List<Farm> farms = farmMapper.queryFarmByCustomerId(16);
+        for (Farm farm : farms) {
+            System.out.println(farm);
+        }
+    }
+
+    @Autowired
+    ProductMapper productMapper;
+    @Test
+    public void addProduct() {
+        Product product = new Product(0,"辣椒","变态辣",null,0,0);
+        productMapper.addProduct(product);
+    }
+
+    @Test
+    public void queryAllSaleProduct() {
+        List<Product> products = productMapper.queryAllSaleProduct();
+        for (Product product : products) {
+            System.out.println(product);
+        }
+    }
+
+    @Test
+    public void queryAllPlantProduct() {
+        List<Product> products = productMapper.queryAllPlantProduct();
+        for (Product product : products) {
+            System.out.println(product);
+        }
     }
 }

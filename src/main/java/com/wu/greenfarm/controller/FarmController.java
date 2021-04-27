@@ -1,6 +1,7 @@
 package com.wu.greenfarm.controller;
 
 import com.wu.greenfarm.pojo.Farm;
+import com.wu.greenfarm.pojo.User;
 import com.wu.greenfarm.service.FarmService;
 import com.wu.greenfarm.service.UserService;
 import com.wu.greenfarm.utils.ImageUtil;
@@ -86,5 +87,23 @@ public class FarmController {
         }
     }
 
+    @RequestMapping(value = "/searchFarm", method = RequestMethod.POST)
+    public List<Farm> searchFarmByCondition(@RequestBody Map<String,String> map) {
+        if (map == null) {
+            return new ArrayList<>();
+        } else {
+            String condition = map.get("condition");
+            return farmService.searchFarmByCondition(condition);
+        }
+    }
+
+    @RequestMapping(value = "/getCustomerFarmList",method = RequestMethod.POST)
+    public List<Farm> getCustomerFarmList(@RequestBody User user) {
+        if (user == null) {
+            return new ArrayList<>();
+        } else {
+            return farmService.getCustomerFarmList(user);
+        }
+    }
 
 }

@@ -18,6 +18,8 @@ public interface FarmMapper {
      */
     int addFarm(Farm farm);
 
+    Farm queryFarmById(@Param("id")int id);
+
     /**
      * 根据拥有者的id查询农场
      * @param ownerId
@@ -39,5 +41,24 @@ public interface FarmMapper {
      */
     List<Farm> queryFarmLimit(@Param("start") int start, @Param("len") int len);
 
+    /**
+     * 将农场设置为已出租
+     * @param id
+     * @return
+     */
+    int setFarmRentOut(@Param("id")int id);
 
+    /**
+     * 按条件查询
+     * @param condition
+     * @return
+     */
+    List<Farm> queryFarmByCondition(String condition);
+
+    /**
+     * 按租赁用户查询农场
+     * @param id
+     * @return
+     */
+    List<Farm> queryFarmByCustomerId(@Param("id")int id);
 }
