@@ -7,36 +7,61 @@ public class Plant {
 
     private int id;
 
+    private String name;
+
+    private String description;
+
+    private String amount;
+
     private int farmId;
 
     private int customerId;
 
-    private int productId;
-
-    private String amount;
-
-    private int status;
+    private int status;//0：未种植；1：种植中；2：已种好
 
     public Plant() {
     }
 
-    public Plant(int id, int farmId, int customerId, int productId, String amount, int status) {
+    public Plant(int id, String name, String description, String amount, int farmId, int customerId, int status) {
         this.id = id;
+        this.name = name;
+        this.description = description;
+        this.amount = amount;
         this.farmId = farmId;
         this.customerId = customerId;
-        this.productId = productId;
-        this.amount = amount;
         this.status = status;
     }
 
     public int getId() {
-
-
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     public int getFarmId() {
@@ -55,22 +80,6 @@ public class Plant {
         this.customerId = customerId;
     }
 
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
     public int getStatus() {
         return status;
     }
@@ -83,10 +92,11 @@ public class Plant {
     public String toString() {
         return "Plant{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", amount='" + amount + '\'' +
                 ", farmId=" + farmId +
                 ", customerId=" + customerId +
-                ", productId=" + productId +
-                ", amount='" + amount + '\'' +
                 ", status=" + status +
                 '}';
     }

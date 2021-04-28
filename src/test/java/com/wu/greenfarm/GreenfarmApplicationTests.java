@@ -1,13 +1,7 @@
 package com.wu.greenfarm;
 
-import com.wu.greenfarm.mapper.FarmMapper;
-import com.wu.greenfarm.mapper.FarmOrderMapper;
-import com.wu.greenfarm.mapper.ProductMapper;
-import com.wu.greenfarm.mapper.UserMapper;
-import com.wu.greenfarm.pojo.Farm;
-import com.wu.greenfarm.pojo.FarmOrder;
-import com.wu.greenfarm.pojo.Product;
-import com.wu.greenfarm.pojo.User;
+import com.wu.greenfarm.mapper.*;
+import com.wu.greenfarm.pojo.*;
 import com.wu.greenfarm.service.FarmService;
 import com.wu.greenfarm.service.UserServiceImpl;
 import com.wu.greenfarm.utils.ImageUtil;
@@ -229,23 +223,23 @@ class GreenfarmApplicationTests {
     ProductMapper productMapper;
     @Test
     public void addProduct() {
-        Product product = new Product(0,"辣椒","变态辣",null,0,0);
+        Product product = new Product(0,"辣椒","变态辣",null,0,null);
         productMapper.addProduct(product);
     }
 
+    @Autowired
+    PlantMapper plantMapper;
     @Test
-    public void queryAllSaleProduct() {
-        List<Product> products = productMapper.queryAllSaleProduct();
-        for (Product product : products) {
-            System.out.println(product);
-        }
+    public void addPlant() {
+        Plant plant = new Plant(0,"花菜","无","10斤",2,3,0);
+        plantMapper.addPlant(plant);
     }
 
     @Test
-    public void queryAllPlantProduct() {
-        List<Product> products = productMapper.queryAllPlantProduct();
-        for (Product product : products) {
-            System.out.println(product);
+    public void queryPlantByCustomerId() {
+        List<Plant> plants = plantMapper.queryPlantByCustomerId(3);
+        for (Plant plant : plants) {
+            System.out.println(plant);
         }
     }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wu.greenfarm.mapper.PlantMapper">
+
+    <insert id="addPlant" parameterType="Plant">
+        insert into t_plant (name,description,amount,farm_id,customer_id,status)
+        value (#{name},#{description},#{amount},#{farmId},#{customerId},#{status})
+    </insert>
+
+    <select id="queryPlantByCustomerId" resultType="Plant">
+        select * from t_plant where customer_id = #{id}
+    </select>
+
+</mapper>

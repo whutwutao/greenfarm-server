@@ -4,15 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wu.greenfarm.mapper.ProductMapper">
     <insert id="addProduct">
-        insert into t_product (name,description,picture_url,price,type)
-        value (#{name},#{description},#{pictureUrl},#{price},#{type})
+        insert into t_product (name,description,picture_url,price,amount)
+        value (#{name},#{description},#{pictureUrl},#{price},#{amount})
     </insert>
 
-    <select id="queryAllSaleProduct" resultType="Product">
-        select * from t_product where type = 0
-    </select>
-
-    <select id="queryAllPlantProduct" resultType="Product">
-        select * from t_product where type = 1
-    </select>
 </mapper>

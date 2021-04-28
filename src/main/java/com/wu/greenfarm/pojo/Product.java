@@ -11,18 +11,18 @@ public class Product {
 
     private double price;
 
-    private int type;
+    private String amount;
 
     public Product() {
     }
 
-    public Product(int id, String name, String description, String pictureUrl, double price, int type) {
+    public Product(int id, String name, String description, String pictureUrl, double price, String amount) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.pictureUrl = pictureUrl;
         this.price = price;
-        this.type = type;
+        this.amount = amount;
     }
 
     public int getId() {
@@ -65,12 +65,12 @@ public class Product {
         this.price = price;
     }
 
-    public int getType() {
-        return type;
+    public String getAmount() {
+        return amount;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     @Override
@@ -81,7 +81,7 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", pictureUrl='" + pictureUrl + '\'' +
                 ", price=" + price +
-                ", type=" + type +
+                ", amount='" + amount + '\'' +
                 '}';
     }
 }

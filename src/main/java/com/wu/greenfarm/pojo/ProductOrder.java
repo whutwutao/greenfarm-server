@@ -10,19 +10,16 @@ public class ProductOrder {
 
     private int productId;
 
-    private String amount;
-
     private int status;
 
     public ProductOrder() {
     }
 
-    public ProductOrder(int id, int customerId, int farmerId, int productId, String amount, int status) {
+    public ProductOrder(int id, int customerId, int farmerId, int productId, int status) {
         this.id = id;
         this.customerId = customerId;
         this.farmerId = farmerId;
         this.productId = productId;
-        this.amount = amount;
         this.status = status;
     }
 
@@ -58,14 +55,6 @@ public class ProductOrder {
         this.productId = productId;
     }
 
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
     public int getStatus() {
         return status;
     }
@@ -81,7 +70,6 @@ public class ProductOrder {
                 ", customerId=" + customerId +
                 ", farmerId=" + farmerId +
                 ", productId=" + productId +
-                ", amount='" + amount + '\'' +
                 ", status=" + status +
                 '}';
     }
