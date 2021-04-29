@@ -9,8 +9,18 @@
         value (#{name},#{description},#{amount},#{farmId},#{customerId},#{status})
     </insert>
 
-    <select id="queryPlantByCustomerId" resultType="Plant">
-        select * from t_plant where customer_id = #{id}
+    <select id="queryPlantByCustomerIdAndFarmId" resultType="Plant">
+        select * from t_plant where customer_id = #{customerId} and farm_id = #{farmId}
     </select>
+
+    <select id="queryPlantByFarmId" resultType="Plant">
+        select * from t_plant where farm_id = #{farmId}
+    </select>
+
+    <update id="setPlantStatus" parameterType="Plant">
+        update t_plant
+        set status = #{status}
+        where id = #{id}
+    </update>
 
 </mapper>

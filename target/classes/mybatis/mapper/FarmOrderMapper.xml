@@ -23,4 +23,9 @@
         where customer_id = #{customerId}
     </select>
 
+    <select id="getCustomerId" resultType="int">
+        select customer_id from t_user, t_farm_order
+        where t_user.id = t_farm_order.customer_id and t_farm_order.farm_id = #{farmId}
+    </select>
+
 </mapper>

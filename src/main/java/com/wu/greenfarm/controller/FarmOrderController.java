@@ -1,8 +1,10 @@
 package com.wu.greenfarm.controller;
 
 import com.wu.greenfarm.pojo.Farm;
+import com.wu.greenfarm.pojo.User;
 import com.wu.greenfarm.service.FarmOrderService;
 import com.wu.greenfarm.service.FarmService;
+import com.wu.greenfarm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,9 @@ import java.util.Map;
 public class FarmOrderController {
     @Autowired
     FarmOrderService farmOrderService;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     FarmService farmService;
@@ -37,5 +42,15 @@ public class FarmOrderController {
             }
         }
         return result;
+    }
+
+
+    @RequestMapping(value = "/getCustomer", method = RequestMethod.POST)
+    public User getCustomerTelephone(@RequestBody HashMap<String,Integer> map) {
+        if (map == null) {
+            return null;
+        } else {
+            return farmOrderService.getCustomer(map.get("farmId"));
+        }
     }
 }

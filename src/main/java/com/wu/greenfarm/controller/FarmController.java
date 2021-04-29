@@ -106,4 +106,13 @@ public class FarmController {
         }
     }
 
+    @RequestMapping(value = "/getFarmerFarmList", method = RequestMethod.POST)
+    public List<Farm> getFarmerFarList(@RequestBody User user) {
+        if (user == null) {
+            return new ArrayList<>();
+        } else {
+            return farmService.getFarmByOwnerId(user.getId());
+        }
+    }
+
 }

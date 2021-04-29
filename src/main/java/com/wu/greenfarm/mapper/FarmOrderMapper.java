@@ -17,4 +17,7 @@ public interface FarmOrderMapper {
 
     FarmOrder queryFarmOrderByCustomerId(@Param("customerId")int customerId);
 
+
+    int getCustomerId(@Param("farmId") int farmId);
+
 }

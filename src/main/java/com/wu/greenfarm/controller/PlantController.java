@@ -37,11 +37,35 @@ public class PlantController {
 
 
     @RequestMapping(value = "/getCustomerPlantList", method = RequestMethod.POST)
-    public List<Plant> getCustomerPlantList(@RequestBody User user) {
-        if (user != null) {
-            return plantService.getCustomerPlantList(user.getId());
+    public List<Plant> getCustomerPlantList(@RequestBody HashMap<String,Integer> map) {
+        if (map != null) {
+            return plantService.getCustomerPlantList(map.get("customerId"),map.get("farmId"));
         } else {
             return new ArrayList<>();
         }
+    }
+
+    @RequestMapping(value = "/getFarmerPlantList", method = RequestMethod.POST)
+    public List<Plant> getFarmerPlantList(@RequestBody HashMap<String,Integer> map) {
+        if (map != null) {
+            return plantService.getFarmerPlantList(map.get("farmId"));
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    @RequestMapping(value = "/setPlantStatus", method = RequestMethod.POST)
+    public HashMap<String,String> setPlantStatus(@RequestBody Plant plant) {
+        HashMap<String,String> result = new HashMap<>();
+        if (plant == null) {
+            result.put("result","data from client is null");
+        } else {
+            if (plantService.setPlantStatus(plant) > 0) {
+                result.put("result","succeed");
+            } else {
+                result.put("result","fail");
+            }
+        }
+        return result;
     }
 }

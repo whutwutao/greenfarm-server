@@ -2,6 +2,7 @@ package com.wu.greenfarm;
 
 import com.wu.greenfarm.mapper.*;
 import com.wu.greenfarm.pojo.*;
+import com.wu.greenfarm.service.FarmOrderService;
 import com.wu.greenfarm.service.FarmService;
 import com.wu.greenfarm.service.UserServiceImpl;
 import com.wu.greenfarm.utils.ImageUtil;
@@ -237,9 +238,31 @@ class GreenfarmApplicationTests {
 
     @Test
     public void queryPlantByCustomerId() {
-        List<Plant> plants = plantMapper.queryPlantByCustomerId(3);
+        List<Plant> plants = plantMapper.queryPlantByCustomerIdAndFarmId(3,2);
         for (Plant plant : plants) {
             System.out.println(plant);
         }
+    }
+
+    @Test
+    public void getCustomerId() {
+        System.out.println(farmOrderMapper.getCustomerId(2));
+    }
+
+    @Autowired
+    FarmOrderService farmOrderService;
+
+    @Test
+    public void getCustomer() {
+
+        System.out.println(farmOrderService.getCustomer(2));
+    }
+
+    @Test
+    public void setPlantStatus() {
+        Plant plant = new Plant();
+        plant.setId(3);
+        plant.setStatus(1);
+        plantMapper.setPlantStatus(plant);
     }
 }

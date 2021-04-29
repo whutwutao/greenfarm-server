@@ -19,7 +19,17 @@ public class PlantServiceImpl implements PlantService {
     }
 
     @Override
-    public List<Plant> getCustomerPlantList(int customerId) {
-        return plantMapper.queryPlantByCustomerId(customerId);
+    public List<Plant> getCustomerPlantList(int customerId, int farmId) {
+        return plantMapper.queryPlantByCustomerIdAndFarmId(customerId, farmId);
+    }
+
+    @Override
+    public List<Plant> getFarmerPlantList(int farmId) {
+        return plantMapper.queryPlantByFarmId(farmId);
+    }
+
+    @Override
+    public int setPlantStatus(Plant plant) {
+        return plantMapper.setPlantStatus(plant);
     }
 }

@@ -4,6 +4,7 @@ import com.wu.greenfarm.mapper.FarmMapper;
 import com.wu.greenfarm.mapper.FarmOrderMapper;
 import com.wu.greenfarm.mapper.UserMapper;
 import com.wu.greenfarm.pojo.FarmOrder;
+import com.wu.greenfarm.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,19 @@ public class FarmOrderServiceImpl implements FarmOrderService{
             return farmOrderMapper.addFarmOrder(farmOrder);
         } else {
             return -1;
+        }
+    }
+
+    @Override
+    public User getCustomer(int farmId) {
+
+        FarmOrder farmOrder = farmOrderMapper.queryFarmOrderByFarmId(farmId);
+        if (farmOrder == null) {
+            return null;
+        } else {
+            int customerId = farmOrderMapper.getCustomerId(farmId);
+            User user = userMapper.queryUserById(customerId);
+            return user;
         }
     }
 }
