@@ -9,6 +9,12 @@
         value (#{farmId},#{customerId})
     </insert>
 
+    <update id="processFarmOrder">
+        update t_farm_order
+        set status = 1
+        where id = #{id}
+    </update>
+
     <select id="queryFarmOrderById" resultType="FarmOrder">
         select * from t_farm_order
     </select>
@@ -16,6 +22,26 @@
     <select id="queryFarmOrderByFarmId" resultType="FarmOrder">
         select * from t_farm_order
         where farm_id = #{farmId}
+    </select>
+
+    <select id = "queryNotProcessFarmOrderByOwnerId" resultType="FarmOrder">
+        select t_farm_order.* from t_farm ,t_farm_order
+        where #{farmerId} = t_farm.owner_id and t_farm.id = t_farm_order.farm_id and t_farm_order.status = 0;
+    </select>
+
+    <select id="queryProcessedFarmOrderByOwnerId" resultType="FarmOrder">
+        select t_farm_order.* from t_farm ,t_farm_order
+        where #{farmerId} = t_farm.owner_id and t_farm.id = t_farm_order.farm_id and t_farm_order.status = 1;
+    </select>
+
+    <select id="queryNotProcessedFarmOrderByCustomerId" resultType="FarmOrder">
+        select * from t_farm_order
+        where customer_id = #{customerId} and status = 0;
+    </select>
+
+    <select id="queryProcessedFarmOrderByCustomerId" resultType="FarmOrder">
+        select * from t_farm_order
+        where customer_id = #{customerId} and status = 1;
     </select>
 
     <select id="queryFarmOrderByCustomerId" resultType="FarmOrder">
@@ -27,5 +53,6 @@
         select customer_id from t_user, t_farm_order
         where t_user.id = t_farm_order.customer_id and t_farm_order.farm_id = #{farmId}
     </select>
+
 
 </mapper>

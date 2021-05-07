@@ -1,6 +1,6 @@
 package com.wu.greenfarm.controller;
 
-import com.wu.greenfarm.pojo.Farm;
+import com.wu.greenfarm.pojo.FarmOrderBean;
 import com.wu.greenfarm.pojo.User;
 import com.wu.greenfarm.service.FarmOrderService;
 import com.wu.greenfarm.service.FarmService;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,11 +47,72 @@ public class FarmOrderController {
 
 
     @RequestMapping(value = "/getCustomer", method = RequestMethod.POST)
-    public User getCustomerTelephone(@RequestBody HashMap<String,Integer> map) {
+    public User getCustomer(@RequestBody HashMap<String,Integer> map) {
         if (map == null) {
             return null;
         } else {
             return farmOrderService.getCustomer(map.get("farmId"));
+        }
+    }
+
+    @RequestMapping(value = "/getFarmerFarmOrderBean")
+    public List<FarmOrderBean> getFarmerFarmOrderBean(@RequestBody HashMap<String,Integer> map) {
+        if (map == null) {
+            return new ArrayList<>();
+        } else {
+            int farmerId = map.get("farmerId");
+            return farmOrderService.getNotProcessedFarmOrder(farmerId);
+        }
+    }
+
+    @RequestMapping(value = "/getFarmerProcessedFarmOrderBean")
+    public List<FarmOrderBean> getFarmerNotProcessedFarmOrderBean(@RequestBody HashMap<String,Integer> map) {
+        if (map == null) {
+            return new ArrayList<>();
+        } else {
+            int farmerId = map.get("farmerId");
+            return farmOrderService.getProcessedFarmOrder(farmerId);
+        }
+    }
+
+    @RequestMapping(value = "/processFarmerFarmOrder")
+    public HashMap<String,String> processFarmerFarmOrder(@RequestBody List<Integer> farmOrderIdList) {
+        HashMap<String,String> result  = new HashMap<>();
+        if (farmOrderIdList == null && farmOrderIdList.isEmpty()) {
+            result.put("result","data is null");
+        } else {
+            boolean flag = true;
+            for (Integer orderId : farmOrderIdList) {
+                if (farmOrderService.processFarmOrder(orderId) <= 0) {
+                    flag = false;
+                }
+            }
+            if (!flag) {
+                result.put("result","some order process fail");
+            } else {
+                result.put("result","success");
+            }
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "/getCustomerNotProcessedFarmOrderBeanList")
+    public List<FarmOrderBean> getCustomerFarmOrderBeanList(@RequestBody HashMap<String,Integer> map) {
+        if (map == null) {
+            return new ArrayList<>();
+        } else {
+            int customerId = map.get("customerId");
+            return farmOrderService.getCustomerNotProcessedFarmOrder(customerId);
+        }
+    }
+
+    @RequestMapping(value = "/getCustomerProcessedFarmOrderBeanList")
+    public List<FarmOrderBean> getCustomerProcessedFarmOrderBeanList(@RequestBody HashMap<String,Integer> map) {
+        if (map == null) {
+            return new ArrayList<>();
+        } else {
+            int customerId = map.get("customerId");
+            return farmOrderService.getCustomerProcessedFarmOrder(customerId);
         }
     }
 }

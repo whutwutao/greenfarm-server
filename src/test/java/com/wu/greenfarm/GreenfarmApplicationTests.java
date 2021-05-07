@@ -265,4 +265,43 @@ class GreenfarmApplicationTests {
         plant.setStatus(1);
         plantMapper.setPlantStatus(plant);
     }
+
+    @Test
+    public void queryFarmOrderByOwnerId() {
+        System.out.println(farmOrderMapper.queryNotProcessFarmOrderByOwnerId(13));
+
+    }
+
+    @Test
+    public void queryNotProcessedFarmOrderByCustomerId() {
+        List<FarmOrder> farmOrderList = farmOrderMapper.queryNotProcessedFarmOrderByCustomerId(15);
+        for (FarmOrder farmOrder : farmOrderList) {
+            System.out.println(farmOrder);
+        }
+    }
+
+    @Test
+    public void queryProcessedFarmOrderByCustomerId() {
+        List<FarmOrder> farmOrderList = farmOrderMapper.queryProcessedFarmOrderByCustomerId(16);
+        for (FarmOrder farmOrder : farmOrderList) {
+            System.out.println(farmOrder);
+        }
+    }
+
+    @Test
+    public void getCustomerNotProcessedFarmOrder() {
+        List<FarmOrderBean> list = farmOrderService.getCustomerNotProcessedFarmOrder(15);
+        for (FarmOrderBean farmOrderBean : list) {
+            System.out.println(farmOrderBean);
+        }
+    }
+
+    @Test
+    public void getCustomerProcessedFarmOrder() {
+        List<FarmOrderBean> list = farmOrderService.getCustomerProcessedFarmOrder(16);
+        for (FarmOrderBean farmOrderBean : list) {
+            System.out.println(farmOrderBean);
+        }
+    }
+
 }
