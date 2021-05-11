@@ -65,14 +65,14 @@ public class FarmController {
         }
     }
 
-    @RequestMapping(value = "/getOwnerTelephone", method = RequestMethod.POST)
-    public HashMap<String,String> getOwnerTelephone(@RequestBody Farm farm) {
+    @RequestMapping(value = "/getOwner", method = RequestMethod.POST)
+    public HashMap<String,User> getOwnerTelephone(@RequestBody Farm farm) {
         if (farm == null) {
-            return new HashMap<String,String>();
+            return new HashMap<String,User>();
         } else {
-            HashMap<String,String> result = new HashMap<>();
-            String telephone = userService.getTelephone(farm.getOwnerId());
-            result.put("telephone",telephone);
+            HashMap<String, User> result = new HashMap<>();
+            User owner = userService.getUserById(farm.getOwnerId());
+            result.put("owner",owner);
             return result;
         }
     }

@@ -51,6 +51,6 @@ public class ImageUtil {
     }
 
     public static String getPictureUrl(String subDir, String fileName) {
-        return "http://192.168.43.192:8081/static/" + subDir + "/" + fileName;
+        return "/static/" + subDir + "/" + fileName;
     }
 }

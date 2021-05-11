@@ -66,4 +66,7 @@ public interface UserService {
     int changeTelephone(User user);
 
     String getTelephone(int id);
+
+    //根据id查询用户
+    User getUserById(int id);
 }

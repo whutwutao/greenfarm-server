@@ -76,4 +76,9 @@ public class UserServiceImpl implements UserService{
     public String getTelephone(int id) {
         return userMapper.getTelephone(id);
     }
+
+    @Override
+    public User getUserById(int id) {
+        return userMapper.queryUserById(id);
+    }
 }

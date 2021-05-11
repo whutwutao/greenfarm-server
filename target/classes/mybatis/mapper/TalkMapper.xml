@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wu.greenfarm.mapper.TalkMapper">
+
+    <insert id="addTalk" parameterType="Talk">
+        insert into t_talk(sender,receiver)
+        value(#{sender},#{receiver})
+    </insert>
+
+    <select id="getTalkById" resultType="Talk">
+        select * from t_talk where id = #{id}
+    </select>
+
+    <select id="getTalkBySender" resultType="Talk">
+        select * from t_talk where sender = #{sender}
+    </select>
+
+    <select id="getTalkBySenderAndReceiver" resultType="Talk">
+        select * from t_talk where sender = #{sender} and receiver = #{receiver}
+    </select>
+
+    <select id="getFriendBySender" resultType="User">
+        select t_user.* from t_talk, t_user
+        where t_talk.receiver = t_user.id and t_talk.sender = #{sender}
+    </select>
+
+</mapper>

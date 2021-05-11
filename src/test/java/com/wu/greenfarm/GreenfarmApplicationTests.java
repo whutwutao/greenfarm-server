@@ -4,15 +4,21 @@ import com.wu.greenfarm.mapper.*;
 import com.wu.greenfarm.pojo.*;
 import com.wu.greenfarm.service.FarmOrderService;
 import com.wu.greenfarm.service.FarmService;
+import com.wu.greenfarm.service.TalkService;
 import com.wu.greenfarm.service.UserServiceImpl;
 import com.wu.greenfarm.utils.ImageUtil;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.List;
 
-@SpringBootTest
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class GreenfarmApplicationTests {
 
     @Test
@@ -301,6 +307,25 @@ class GreenfarmApplicationTests {
         List<FarmOrderBean> list = farmOrderService.getCustomerProcessedFarmOrder(16);
         for (FarmOrderBean farmOrderBean : list) {
             System.out.println(farmOrderBean);
+        }
+    }
+
+    @Autowired
+    TalkService talkService;
+
+    @Test
+    public void addTalk() {
+        Talk talk = new Talk();
+        talk.setSender(13);
+        talk.setReceiver(16);
+        System.out.println(talkService.addTalk(talk));
+    }
+
+    @Test
+    public void getTalkBySender() {
+        List<Talk> list = talkService.getTalkBySender(16);
+        for (Talk talk : list) {
+            System.out.println(talk);
         }
     }
 
