@@ -227,14 +227,6 @@ class GreenfarmApplicationTests {
     }
 
     @Autowired
-    ProductMapper productMapper;
-    @Test
-    public void addProduct() {
-        Product product = new Product(0,"辣椒","变态辣",null,0,null);
-        productMapper.addProduct(product);
-    }
-
-    @Autowired
     PlantMapper plantMapper;
     @Test
     public void addPlant() {
@@ -326,6 +318,55 @@ class GreenfarmApplicationTests {
         List<Talk> list = talkService.getTalkBySender(16);
         for (Talk talk : list) {
             System.out.println(talk);
+        }
+    }
+
+    @Test
+    public void queryFarmByMultiCondition() {
+        List<Farm> list= farmMapper.queryFarmByMultiCondition("","猕猴桃",0,10,1000,5000,0,5);
+        for (Farm farm : list) {
+            System.out.println(farm);
+        }
+
+    }
+
+    @Autowired
+    CategoryMapper categoryMapper;
+
+    @Test
+    public void addCategory() {
+        Category category = new Category();
+        category.setCname("叶菜类");
+        categoryMapper.addCategory(category);
+    }
+
+    @Test
+    public void getAllCategory() {
+        List<Category> list = categoryMapper.getAllCategory();
+        for (Category category : list) {
+            System.out.println(category);
+        }
+    }
+
+    @Autowired
+    ProductMapper productMapper;
+    @Test
+    public void addProduct() {
+        Product product = new Product();
+        product.setName("上海青苗");
+        product.setDescription("500g一份");
+        product.setFarmerId(13);
+        product.setCategory(5);
+        product.setPictureUrl("/static/product/QQ20210516-10.jpg");
+        product.setPrice(6);
+        productMapper.addProduct(product);
+    }
+
+    @Test
+    public void getProductByCategoryLimit() {
+        List<Product> products = productMapper.getProductByCategoryLimit(2,0,5);
+        for (Product product : products) {
+            System.out.println(product);
         }
     }
 

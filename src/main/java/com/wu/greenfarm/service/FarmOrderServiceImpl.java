@@ -24,11 +24,12 @@ public class FarmOrderServiceImpl implements FarmOrderService{
     FarmMapper farmMapper;
 
     @Override
-    public int addFarmOrder(int farmId, int customerId) {
+    public int addFarmOrder(int farmId, int customerId, String address) {
         if (userMapper.queryUserById(customerId) != null && farmMapper.queryFarmById(farmId) != null) {
             FarmOrder farmOrder = new FarmOrder();
             farmOrder.setFarmId(farmId);
             farmOrder.setCustomerId(customerId);
+            farmOrder.setAddress(address);
             return farmOrderMapper.addFarmOrder(farmOrder);
         } else {
             return -1;

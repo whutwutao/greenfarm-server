@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public interface FarmOrderService {
-    int addFarmOrder(int farmId, int customerId);
+    int addFarmOrder(int farmId, int customerId, String address);
 
     int processFarmOrder(int id);
 

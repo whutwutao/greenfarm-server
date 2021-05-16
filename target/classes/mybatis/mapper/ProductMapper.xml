@@ -4,8 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wu.greenfarm.mapper.ProductMapper">
     <insert id="addProduct">
-        insert into t_product (name,description,picture_url,price,amount)
-        value (#{name},#{description},#{pictureUrl},#{price},#{amount})
+        insert into t_product (farmer_id,category,name,description,picture_url,price)
+        value (#{farmerId},#{category},#{name},#{description},#{pictureUrl},#{price})
     </insert>
+
+    <select id="getProductLimit" resultType="Product">
+        select * from t_product limit #{start}, #{len};
+    </select>
+
+    <select id="getProductByCategoryLimit" resultType="Product">
+        select * from t_product where category = #{categoryId} limit #{start},#{len}
+    </select>
 
 </mapper>

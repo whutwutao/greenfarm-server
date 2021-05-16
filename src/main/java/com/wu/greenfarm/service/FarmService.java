@@ -2,6 +2,7 @@ package com.wu.greenfarm.service;
 
 import com.wu.greenfarm.pojo.Farm;
 import com.wu.greenfarm.pojo.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,4 +53,22 @@ public interface FarmService {
      * @return
      */
     List<Farm> getCustomerFarmList(User user);
+
+    /**
+     * 多条件查询农场
+     * @param address
+     * @param description
+     * @param areaMin
+     * @param areaMax
+     * @param priceMin
+     * @param priceMax
+     * @param serviceLifeMin
+     * @param serviceLifeMax
+     * @return
+     */
+    List<Farm> getFarmByMultiCondition(String address,
+                                       String description,
+                                       double areaMin, double areaMax,
+                                       double priceMin, double priceMax,
+                                       int serviceLifeMin, int serviceLifeMax);
 }

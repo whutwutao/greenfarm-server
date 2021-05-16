@@ -61,4 +61,22 @@ public interface FarmMapper {
      * @return
      */
     List<Farm> queryFarmByCustomerId(@Param("id")int id);
+
+    /**
+     * 多条件查询
+     * @param address
+     * @param areaMin
+     * @param areaMax
+     * @param priceMin
+     * @param priceMax
+     * @param description
+     * @param serviceLifeMin
+     * @param serviceLifeMax
+     * @return
+     */
+    List<Farm> queryFarmByMultiCondition(String address,
+                                         String description,
+                                         @Param("areaMin")double areaMin, @Param("areaMax")double areaMax,
+                                         @Param("priceMin")double priceMin, @Param("priceMax")double priceMax,
+                                         @Param("serviceLifeMin")int serviceLifeMin, @Param("serviceLifeMax")int serviceLifeMax);
 }

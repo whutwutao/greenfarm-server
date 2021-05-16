@@ -2,6 +2,7 @@ package com.wu.greenfarm.mapper;
 
 import com.wu.greenfarm.pojo.Product;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,14 +19,19 @@ public interface ProductMapper {
     int addProduct(Product product);
 
     /**
-     * 查询所有售卖的农产品
-     */
-    List<Product> queryAllSaleProduct();
-
-    /**
-     * 查询所有用户种植的农产品
+     * 不带查询条件的分页查询
+     * @param start
+     * @param len
      * @return
      */
-    List<Product> queryAllPlantProduct();
+    List<Product> getProductLimit(@Param("start") int start, @Param("len") int len);
+
+    /**
+     * 根据类别查找农产品，带分页功能
+     * @param categoryId
+     * @return
+     */
+    List<Product> getProductByCategoryLimit(@Param("categoryId") int categoryId, @Param("start") int start, @Param("len") int len);
+
 
 }

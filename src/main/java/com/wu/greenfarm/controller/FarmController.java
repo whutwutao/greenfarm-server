@@ -1,5 +1,6 @@
 package com.wu.greenfarm.controller;
 
+import com.wu.greenfarm.pojo.Condition;
 import com.wu.greenfarm.pojo.Farm;
 import com.wu.greenfarm.pojo.User;
 import com.wu.greenfarm.service.FarmService;
@@ -107,11 +108,20 @@ public class FarmController {
     }
 
     @RequestMapping(value = "/getFarmerFarmList", method = RequestMethod.POST)
-    public List<Farm> getFarmerFarList(@RequestBody User user) {
+    public List<Farm> getFarmerFarmList(@RequestBody User user) {
         if (user == null) {
             return new ArrayList<>();
         } else {
             return farmService.getFarmByOwnerId(user.getId());
+        }
+    }
+
+    @RequestMapping(value = "/getFarmByMultiCondition")
+    public List<Farm> getFarmByMultiCondition(@RequestBody Condition condition) {
+        if (condition == null) {
+            return new ArrayList<>();
+        } else {
+            return farmService.getFarmByMultiCondition(condition.getAddress(),condition.getDescription(), condition.getAreaMin(), condition.getAreaMax(),condition.getPriceMin(),condition.getPriceMax(), condition.getServiceLifeMin(), condition.getServiceLifeMax());
         }
     }
 

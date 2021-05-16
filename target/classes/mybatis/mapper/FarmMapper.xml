@@ -80,4 +80,13 @@
             t_farm_order.status = 1 and
             t_farm_order.farm_id = t_farm.id
     </select>
+
+    <select id="queryFarmByMultiCondition" resultType="Farm">
+        select * from v_farm_available
+        where address like concat('%',#{address},'%')
+        and area between #{areaMin} and #{areaMax}
+        and price between #{priceMin} and #{priceMax}
+        and description like concat('%',#{description},'%')
+        and service_life between #{serviceLifeMin} and #{serviceLifeMax}
+    </select>
 </mapper>

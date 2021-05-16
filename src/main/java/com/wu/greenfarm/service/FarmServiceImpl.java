@@ -58,4 +58,9 @@ public class FarmServiceImpl implements FarmService{
     public List<Farm> getCustomerFarmList(User user) {
         return farmMapper.queryFarmByCustomerId(user.getId());
     }
+
+    @Override
+    public List<Farm> getFarmByMultiCondition(String address, String description, double areaMin, double areaMax, double priceMin, double priceMax, int serviceLifeMin, int serviceLifeMax) {
+        return farmMapper.queryFarmByMultiCondition(address, description, areaMin, areaMax, priceMin, priceMax, serviceLifeMin, serviceLifeMax);
+    }
 }

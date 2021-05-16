@@ -27,16 +27,18 @@ public class FarmOrderController {
     @Autowired
     FarmService farmService;
     @RequestMapping(value = "/addFarmOrder", method = RequestMethod.POST)
-    public Map<String,String> addFarmOrderController(@RequestBody Map<String,Integer> map) {
+    public Map<String,String> addFarmOrderController(@RequestBody Map<String,String> map) {
         HashMap<String,String> result = new HashMap<>();
         if (map == null) {
             result.put("result","the data is null");
         } else {
-            int farmId = map.get("farmId");
-            int customerId = map.get("customerId");
+            int farmId = Integer.parseInt(map.get("farmId"));
+            int customerId = Integer.parseInt(map.get("customerId"));
+            String address = map.get("address");
             System.out.println("farmId:"+farmId);
             System.out.println("customerId:"+customerId);
-            if (farmOrderService.addFarmOrder(farmId,customerId) != -1 && farmService.setFarmSentOut(farmId) > 0) {
+            System.out.println("address:"+address);
+            if (farmOrderService.addFarmOrder(farmId,customerId,address) != -1 && farmService.setFarmSentOut(farmId) > 0) {
                 result.put("result","succeed");
             } else {
                 result.put("result","fail");

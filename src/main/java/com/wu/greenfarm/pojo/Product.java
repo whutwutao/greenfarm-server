@@ -3,6 +3,10 @@ package com.wu.greenfarm.pojo;
 public class Product {
     private int id;
 
+    private int farmerId;
+
+    private int category;
+
     private String name;
 
     private String description;
@@ -11,18 +15,17 @@ public class Product {
 
     private double price;
 
-    private String amount;
-
     public Product() {
     }
 
-    public Product(int id, String name, String description, String pictureUrl, double price, String amount) {
+    public Product(int id, int farmerId, int category, String name, String description, String pictureUrl, double price) {
         this.id = id;
+        this.farmerId = farmerId;
+        this.category = category;
         this.name = name;
         this.description = description;
         this.pictureUrl = pictureUrl;
         this.price = price;
-        this.amount = amount;
     }
 
     public int getId() {
@@ -31,6 +34,22 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getFarmerId() {
+        return farmerId;
+    }
+
+    public void setFarmerId(int farmerId) {
+        this.farmerId = farmerId;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
     }
 
     public String getName() {
@@ -65,23 +84,16 @@ public class Product {
         this.price = price;
     }
 
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
+                ", farmerId=" + farmerId +
+                ", category=" + category +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", pictureUrl='" + pictureUrl + '\'' +
                 ", price=" + price +
-                ", amount='" + amount + '\'' +
                 '}';
     }
 }

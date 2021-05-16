@@ -5,8 +5,8 @@
 <mapper namespace="com.wu.greenfarm.mapper.FarmOrderMapper">
 
     <insert id="addFarmOrder" parameterType="FarmOrder">
-        insert into t_farm_order(farm_id,customer_id)
-        value (#{farmId},#{customerId})
+        insert into t_farm_order(farm_id,customer_id,address)
+        value (#{farmId},#{customerId},#{address})
     </insert>
 
     <update id="processFarmOrder">
