@@ -112,6 +112,11 @@ public class UserController {
         }
     }
 
+    /**
+     * 商品详情页面获取商家信息用于聊天
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/getProductFarmer")
     public User getProductFarmer (@RequestBody HashMap<String,String> request) {
         if (request != null) {

@@ -1,25 +1,28 @@
 package com.wu.greenfarm.pojo;
 
+import java.util.Date;
+
 public class ProductOrder {
-
     private int id;
-
-    private int customerId;
-
-    private int farmerId;
-
     private int productId;
-
+    private int customerId;
+    private int farmerId;
+    private int amount;
+    private double money;//订单金额
+    private Date updateTime;
     private int status;
 
     public ProductOrder() {
     }
 
-    public ProductOrder(int id, int customerId, int farmerId, int productId, int status) {
+    public ProductOrder(int id, int productId, int customerId, int farmerId, int amount, double money, Date updateTime, int status) {
         this.id = id;
+        this.productId = productId;
         this.customerId = customerId;
         this.farmerId = farmerId;
-        this.productId = productId;
+        this.amount = amount;
+        this.money = money;
+        this.updateTime = updateTime;
         this.status = status;
     }
 
@@ -29,6 +32,14 @@ public class ProductOrder {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public int getCustomerId() {
@@ -47,12 +58,28 @@ public class ProductOrder {
         this.farmerId = farmerId;
     }
 
-    public int getProductId() {
-        return productId;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public int getStatus() {
@@ -67,9 +94,12 @@ public class ProductOrder {
     public String toString() {
         return "ProductOrder{" +
                 "id=" + id +
+                ", productId=" + productId +
                 ", customerId=" + customerId +
                 ", farmerId=" + farmerId +
-                ", productId=" + productId +
+                ", amount=" + amount +
+                ", money=" + money +
+                ", updateTime=" + updateTime +
                 ", status=" + status +
                 '}';
     }
