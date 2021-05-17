@@ -17,7 +17,17 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public List<Product> getProductByCategory(int categoryId) {
+        return getProductByCategory(categoryId);
+    }
+
+    @Override
     public List<Product> getProductByCategoryLimit(int categoryId, int start, int len) {
         return productMapper.getProductByCategoryLimit(categoryId, start, len);
+    }
+
+    @Override
+    public List<Product> getProductByName(String name) {
+        return productMapper.getProductByName(name);
     }
 }

@@ -8,6 +8,7 @@ import com.wu.greenfarm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -23,6 +24,11 @@ public class ProductController {
         return productService.getProductLimit(0,6);
     }
 
+    /**
+     * 带分页的按类别查询
+     * @param request
+     * @return
+     */
     @RequestMapping(value ="/getProductByCategoryLimit")
     public List<Product> getProductByCategoryLimit(@RequestBody HashMap<String,String> request) {
         if (request != null) {
@@ -46,4 +52,16 @@ public class ProductController {
             return null;
         }
     }
+
+    @RequestMapping(value = "/getProductByName", method = RequestMethod.POST)
+    public List<Product> getProductByName(@RequestBody HashMap<String,String> request) {
+        if (request != null) {
+            String name = request.get("name");
+            return productService.getProductByName(name);
+        } else {
+            return null;
+        }
+    }
+
+
 }

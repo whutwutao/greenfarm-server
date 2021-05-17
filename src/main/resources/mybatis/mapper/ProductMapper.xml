@@ -12,8 +12,16 @@
         select * from t_product limit #{start}, #{len};
     </select>
 
+    <select id="getProductByCategory" resultType="Product">
+        select * from t_product where category = #{categoryId}
+    </select>
+
     <select id="getProductByCategoryLimit" resultType="Product">
         select * from t_product where category = #{categoryId} limit #{start},#{len}
+    </select>
+
+    <select id="getProductByName" resultType="Product">
+        select * from t_product where name like concat('%',#{name},'%');
     </select>
 
 </mapper>

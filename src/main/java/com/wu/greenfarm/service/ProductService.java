@@ -14,6 +14,13 @@ public interface ProductService {
     List<Product> getProductLimit(int start, int len);
 
     /**
+     * 不带分页的按类别查询
+     * @param categoryId
+     * @return
+     */
+    List<Product> getProductByCategory(int categoryId);
+
+    /**
      * 按类别查询产品，带分页功能
      * @param categoryId
      * @param start
@@ -21,4 +28,11 @@ public interface ProductService {
      * @return
      */
     List<Product> getProductByCategoryLimit(int categoryId, int start, int len);
+
+    /**
+     * 按名称查找
+     * @param name
+     * @return
+     */
+    List<Product> getProductByName(String name);
 }

@@ -370,4 +370,12 @@ class GreenfarmApplicationTests {
         }
     }
 
+    @Test
+    public void getProductByName() {
+        List<Product> products = productMapper.getProductByName("红辣椒");
+        for (Product product : products) {
+            System.out.println(product);
+        }
+    }
+
 }

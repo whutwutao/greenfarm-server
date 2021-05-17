@@ -111,4 +111,19 @@ public class UserController {
             return new UserMessage(false,"客户端数据传输异常",null);
         }
     }
+
+    @RequestMapping(value = "/getProductFarmer")
+    public User getProductFarmer (@RequestBody HashMap<String,String> request) {
+        if (request != null) {
+            String strId = request.get("farmerId");
+            int id = Integer.parseInt(strId);
+            User user = userService.getUserById(id);
+            if (user != null) {
+                user.setPassword("");
+            }
+            return user;
+        } else {
+            return null;
+        }
+    }
 }

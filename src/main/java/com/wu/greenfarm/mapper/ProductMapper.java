@@ -27,11 +27,23 @@ public interface ProductMapper {
     List<Product> getProductLimit(@Param("start") int start, @Param("len") int len);
 
     /**
+     * 不带分页的按类别查询
+     * @param categoryId
+     * @return
+     */
+    List<Product> getProductByCategory(@Param("categoryId") int categoryId);
+
+    /**
      * 根据类别查找农产品，带分页功能
      * @param categoryId
      * @return
      */
     List<Product> getProductByCategoryLimit(@Param("categoryId") int categoryId, @Param("start") int start, @Param("len") int len);
 
-
+    /**
+     * 按名称查找农产品
+     * @param name
+     * @return
+     */
+    List<Product> getProductByName(@Param("name") String name);
 }
