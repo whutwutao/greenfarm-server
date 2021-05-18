@@ -49,7 +49,7 @@ public class FarmController {
             String encodePictureText = map.get("picture");
 
             String pictureFileName = ImageUtil.getFileName(ownerId);//图片文件名
-            String pictureWritePath = ImageUtil.getFilePath(pictureFileName);//图片在本地的保存位置
+            String pictureWritePath = ImageUtil.getFarmFilePath(pictureFileName);//图片在本地的保存位置
             String pictureUrl = ImageUtil.getPictureUrl("farm",pictureFileName);
 
             ImageUtil.decodeAndWrite(encodePictureText,pictureWritePath);

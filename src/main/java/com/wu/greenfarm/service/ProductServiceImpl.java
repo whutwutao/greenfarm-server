@@ -30,4 +30,9 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> getProductByName(String name) {
         return productMapper.getProductByName(name);
     }
+
+    @Override
+    public int addProduct(Product product) {
+        return productMapper.addProduct(product);
+    }
 }

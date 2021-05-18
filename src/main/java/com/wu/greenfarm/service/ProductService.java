@@ -35,4 +35,11 @@ public interface ProductService {
      * @return
      */
     List<Product> getProductByName(String name);
+
+    /**
+     * 添加产品
+     * @param product
+     * @return
+     */
+    int addProduct(Product product);
 }

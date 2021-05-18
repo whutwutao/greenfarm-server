@@ -378,4 +378,19 @@ class GreenfarmApplicationTests {
         }
     }
 
+    @Autowired
+    ProductOrderMapper productOrderMapper;
+
+    @Test
+    public void addProductOrder() {
+        ProductOrder productOrder = new ProductOrder();
+        productOrder.setFarmerId(13);
+        productOrder.setProductId(1);
+        productOrder.setCustomerId(16);
+        productOrder.setAmount(3);
+        productOrder.setMoney(30);
+        productOrder.setStatus(0);
+        productOrderMapper.addProductOrder(productOrder);
+    }
+
 }

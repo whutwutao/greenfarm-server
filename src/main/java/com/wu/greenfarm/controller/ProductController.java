@@ -5,6 +5,7 @@ import com.sun.xml.internal.rngom.digested.DValuePattern;
 import com.wu.greenfarm.pojo.Category;
 import com.wu.greenfarm.pojo.Product;
 import com.wu.greenfarm.service.ProductService;
+import com.wu.greenfarm.utils.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,5 +64,43 @@ public class ProductController {
         }
     }
 
+    @RequestMapping(value = "/addProduct")
+    public HashMap<String,String> addProduct(@RequestBody HashMap<String,String> request) {
+        HashMap<String,String> res = new HashMap<>();
+        if (request != null) {
+            String name = request.get("name");
+            String description = request.get("description");
+            String strPrice = request.get("price");
+            String strCategoryId = request.get("categoryId");
+            String strFarmerId = request.get("farmerId");
+            String encodePictureText = request.get("picture");
 
+            System.out.println("name:" + name);
+            System.out.println("description:" + description);
+            System.out.println("strPrice:" + strPrice);
+            System.out.println("strCategoryId:" + strCategoryId);
+            System.out.println("farmerId:" + strFarmerId);
+            Product product = new Product();
+            product.setName(name);
+            product.setDescription(description);
+            product.setFarmerId(Integer.parseInt(strFarmerId));
+            product.setCategory(Integer.parseInt(strCategoryId));
+            product.setPrice(Double.parseDouble(strPrice));
+
+            String pictureFilename = ImageUtil.getFileName(Integer.parseInt(strFarmerId));
+            String pictureWritePath = ImageUtil.getProductFilePath(pictureFilename);
+            String pictureUrl = ImageUtil.getPictureUrl("product",pictureFilename);
+            ImageUtil.decodeAndWrite(encodePictureText,pictureWritePath);
+            product.setPictureUrl(pictureUrl);
+            System.out.println(product);
+            if (productService.addProduct(product) > 0) {
+                res.put("result","success");
+            } else {
+                res.put("result","fail");
+            }
+        } else {
+            res.put("result","fail");
+        }
+        return res;
+    }
 }

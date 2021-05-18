@@ -1,7 +1,9 @@
 package com.wu.greenfarm.pojo;
 
-import java.util.Date;
+import org.springframework.stereotype.Component;
 
+import java.util.Date;
+@Component
 public class ProductOrder {
     private int id;
     private int productId;
@@ -10,12 +12,13 @@ public class ProductOrder {
     private int amount;
     private double money;//订单金额
     private Date updateTime;
-    private int status;
+    private int status;//0未发货，1已发货，2已签收
+    private String address;//收货地址
 
     public ProductOrder() {
     }
 
-    public ProductOrder(int id, int productId, int customerId, int farmerId, int amount, double money, Date updateTime, int status) {
+    public ProductOrder(int id, int productId, int customerId, int farmerId, int amount, double money, Date updateTime, int status, String address) {
         this.id = id;
         this.productId = productId;
         this.customerId = customerId;
@@ -24,6 +27,7 @@ public class ProductOrder {
         this.money = money;
         this.updateTime = updateTime;
         this.status = status;
+        this.address = address;
     }
 
     public int getId() {
@@ -90,6 +94,14 @@ public class ProductOrder {
         this.status = status;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "ProductOrder{" +
@@ -101,6 +113,7 @@ public class ProductOrder {
                 ", money=" + money +
                 ", updateTime=" + updateTime +
                 ", status=" + status +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

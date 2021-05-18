@@ -41,12 +41,17 @@ public class ImageUtil {
     }
 
     /**
-     * 获得图片保存的本地地址
+     * 获得农场图片保存的本地地址
      * @param fileName
      * @return
      */
-    public static String getFilePath(String fileName) {
+    public static String getFarmFilePath(String fileName) {
         String filePath = "/Users/WuTao/greenFarmServer/static/farm/" + fileName;
+        return filePath;
+    }
+
+    public static String getProductFilePath(String fileName) {
+        String filePath = "/Users/WuTao/greenFarmServer/static/product/" + fileName;
         return filePath;
     }
 
