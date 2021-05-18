@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wu.greenfarm.mapper.CartMapper">
+
+    <insert id="addCart" parameterType="Cart">
+        insert into t_cart(customer_id,product_id,amount,money)
+        value (#{customerId},#{productId},#{amount},#{money})
+    </insert>
+
+    <delete id="deleteCart">
+        delete from t_cart where id = #{id}
+    </delete>
+
+    <select id="getCartByCustomerId" resultType="Cart">
+        select * from t_cart where customer_id = #{customerId}
+    </select>
+
+    <select id="getCartAdapterItem" resultMap="cartAdapterItemResult">
+        select
+            t_cart.id as cid,
+            t_cart.customer_id as customerId,
+            t_cart.product_id as productId,
+            t_cart.amount as amount,
+            t_cart.money as money,
+            t_product.id as pid,
+            t_product.farmer_id as farmerId,
+            t_product.category as category,
+            t_product.name as name,
+            t_product.description as description,
+            t_product.picture_url as pictureUrl,
+            t_product.price as price
+        from t_cart, t_product
+        where t_cart.product_id = t_product.id and t_cart.customer_id = #{customerId}
+    </select>
+
+    <resultMap id="cartAdapterItemResult" type="CartAdapterItem">
+        <association property="cart" javaType="Cart">
+            <id property="id" column="cid"/>
+            <result property="customerId" column="customerId"/>
+            <result property="productId" column="productId"/>
+            <result property="amount" column="amount"/>
+            <result property="money" column="money"/>
+        </association>
+        <association property="product" javaType="Product">
+            <id property="id" column="pid"/>
+            <result property="farmerId" column="farmerId"/>
+            <result property="category" column="category"/>
+            <result property="name" column="name"/>
+            <result property="description" column="description"/>
+            <result property="pictureUrl" column="pictureUrl"/>
+            <result property="price" column="price"/>
+        </association>
+    </resultMap>
+
+
+</mapper>

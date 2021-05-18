@@ -393,4 +393,38 @@ class GreenfarmApplicationTests {
         productOrderMapper.addProductOrder(productOrder);
     }
 
+    @Autowired
+    CartMapper cartMapper;
+
+    @Test
+    public void addCart() {
+        Cart cart = new Cart();
+        cart.setCustomerId(16);
+        cart.setProductId(1);
+        cart.setAmount(1);
+        cart.setMoney(5);
+        cartMapper.addCart(cart);
+    }
+
+    @Test
+    public void deleteCart() {
+        cartMapper.deleteCart(1);
+    }
+
+    @Test
+    public void getCartByCustomerId() {
+        List<Cart> list = cartMapper.getCartByCustomerId(16);
+        for (Cart cart : list) {
+            System.out.println(cart);
+        }
+    }
+
+    @Test
+    public void getCartAdapterItem() {
+        List<CartAdapterItem> list = cartMapper.getCartAdapterItem(16);
+        for (CartAdapterItem cartAdapterItem : list) {
+            System.out.println(cartAdapterItem);
+        }
+    }
+
 }
