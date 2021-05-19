@@ -11,5 +11,12 @@ public interface CartService {
 
     int addCart(Cart cart);
 
+    /**
+     * 批量删除购物车
+     * @param cartIdList
+     * @return
+     */
+    int deleteCartList(List<Integer> cartIdList);
+
     List<CartAdapterItem> getCartAdapterItem(int customerId);
 }

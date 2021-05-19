@@ -43,4 +43,21 @@ public class CartController {
         }
     }
 
+    @RequestMapping(value = "/deleteCartList")
+    public HashMap<String,String> deleteCartList(@RequestBody List<Integer> cartIdList) {
+        HashMap<String,String> res = new HashMap<>();
+        if (cartIdList == null || cartIdList.isEmpty()) {
+            res.put("result","fail");
+        } else {
+            System.out.println(cartIdList);
+            res.put("result","success");
+            if (cartService.deleteCartList(cartIdList) > 0) {
+                res.put("result","success");
+            } else {
+                res.put("result","fail");
+            }
+        }
+        return res;
+    }
+
 }

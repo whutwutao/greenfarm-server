@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class ProductOrderController {
@@ -49,4 +50,18 @@ public class ProductOrderController {
         return res;
     }
 
+    @RequestMapping(value = "/addProductOrderList")
+    public HashMap<String,String> addProductOrderList(@RequestBody List<ProductOrder> productOrderList) {
+        HashMap<String,String> res = new HashMap<>();
+        if (productOrderList == null || productOrderList.isEmpty()) {
+            res.put("result","fail");
+        } else {
+            if (productOrderService.addProductOrderList(productOrderList) > 0) {
+                res.put("result","success");
+            } else {
+                res.put("result","fail");
+            }
+        }
+        return res;
+    }
 }

@@ -20,6 +20,16 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
+    public int deleteCartList(List<Integer> cartIdList) {
+        for (Integer cartId : cartIdList) {
+            if (cartMapper.deleteCart(cartId) <= 0) {
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    @Override
     public List<CartAdapterItem> getCartAdapterItem(int customerId) {
         return cartMapper.getCartAdapterItem(customerId);
     }
